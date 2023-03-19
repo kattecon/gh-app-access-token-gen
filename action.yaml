@@ -1,0 +1,27 @@
+name: Generate Access Token
+author: Evgeny Chukreev <Evgeny.Chukreev@gmail.com>
+description: Generates a GitHub Access Token for a Github App based upon specific inputs.
+
+inputs:
+    app_id:
+        description: Github App Id.
+        required: true
+
+    private_key:
+        description: The private key of the GitHub App in PEM format.
+        required: true
+
+    installation_id:
+        description: The ID of the app installation - found in url of the installation. If not provided, the default is the ID of an installation found using the repository input for the action..
+
+    repository:
+        description: Repository name in the format 'owner/repo' where this the app is installed. The value is only used if installation_id is not provided.
+        default: ${{ github.repository }}
+
+outputs:
+    token:
+        description: The generated temporary access token for the installation of the app.
+
+runs:
+    using: node16
+    main: dist/index.js

@@ -1,0 +1,14 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+        "editor.detectIndentation": false,
+        "editor.indentSize": 2
+    },
+    "[json]": {
+        "editor.indentSize": 4
+    },
+    "cSpell.words": ["kattecon"]
+}
