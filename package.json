@@ -17,6 +17,8 @@
     },
     "scripts": {
         "prepare": "husky install",
-        "pretty-quick": "pretty-quick --staged"
+        "pretty-quick": "pretty-quick --staged",
+        "build": "ncc build src/index.ts --minify --v8-cache --target es2022",
+        "lint": "eslint src --ext .ts --ext .js"
     }
 }
