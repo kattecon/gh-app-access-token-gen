@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Test
+on:
+    workflow_dispatch:
+    push:
+
+jobs:
+    check:
+        name: Build, lint and test
+        runs-on: [self-hosted, linux]
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3.4.0
+
+            - name: Prepare and build
+              run: make build
+
+            - name: Lint
+              run: make lint
+
+            - name: 'TODO: gen token and test via gh'
+              run: gh help
