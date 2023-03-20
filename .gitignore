@@ -1,1 +1,4 @@
-.history
+/dist
+/node_modules
+/temp
+/.history
