@@ -19,6 +19,3 @@ jobs:
 
             - name: Lint
               run: make lint
-
-            - name: 'TODO: gen token and test via gh'
-              run: gh help
