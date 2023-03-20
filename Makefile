@@ -9,7 +9,7 @@ all: build
 
 build: dist/index.js
 
-dist/index.js: ${APP_DEPS_FILES} temp/prepare-done
+dist/index.js: ${APP_DEPS_FILES} temp/prepare-done package.json
 	@npm run build
 
 lint:

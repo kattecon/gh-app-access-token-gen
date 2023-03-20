@@ -1,5 +1,6 @@
 {
     "name": "gh-app-access-token-gen",
+    "type": "module",
     "dependencies": {
         "@actions/core": "1.10.0",
         "@actions/github": "5.1.1",
@@ -18,7 +19,7 @@
     "scripts": {
         "prepare": "husky install",
         "pretty-quick": "pretty-quick --staged",
-        "build": "ncc build src/index.ts --minify --v8-cache --target es2022",
-        "lint": "eslint src --ext .ts --ext .js"
+        "build": "ncc build src/index.ts --target es2022",
+        "lint": "eslint src --ext .ts --ext .js && prettier --check 'src/**/*.ts'"
     }
 }

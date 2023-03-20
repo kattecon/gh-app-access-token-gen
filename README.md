@@ -11,10 +11,11 @@ The action takes in some inputs and uses them to create a token that can be used
 
 ## Inputs
 
-* **app_id**: Required. Number. Github App Id - found in the app settings.
-* **installation_id**: Optional. Number. The ID of the app installation - found in url of an installation. If not provided, the default is the ID of the repository's installation.
-* **private_key**: Required. String. The private key of the GitHub App in PEM format.
+-   **app_id**: Required. Number. Github App Id - found in the app settings.
+-   **private_key**: Required. String. The private key of the GitHub App in PEM format.
+-   **installation_id**: Optional. Number. The ID of the app installation - found in url of the installation. If not provided, the default is the ID of an installation found using the repository input for the action.
+-   **repository**: Required (but has a default). String. Repository name in the format owner/repo. Default value is the name of the current repository. The value is only used if **installation_id** is not provided. The repository is used to get the installation id for the app. It's expected the app is installed in the provided repository.
 
 ## Outputs
 
-* **token**: The generated GitHub Access Token.
+-   **token**: The generated GitHub Access Token.
