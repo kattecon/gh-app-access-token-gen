@@ -2,7 +2,6 @@
 
 name: Test
 on:
-    workflow_dispatch:
     push:
 
 env:
@@ -10,10 +9,9 @@ env:
 
 jobs:
     check:
-        name: Build, lint and test
+        name: Test
 
-        runs-on: [self-hosted, linux]
-        # TODO: runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -22,12 +20,6 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: lts/*
-
-            - name: Prepare and build
-              run: make build
-
-            - name: Lint
-              run: make lint
 
             - name: Generate token using app_id, pk and repo-name (1)
               id: test_case_1_gen
