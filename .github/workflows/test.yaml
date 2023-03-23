@@ -2,56 +2,56 @@
 
 name: Test
 on:
-    workflow_dispatch:
-    push:
+  workflow_dispatch:
+  push:
 
 env:
-    TEST_REPO: kattecon/gh-app-access-token-gen-test
+  TEST_REPO: kattecon/gh-app-access-token-gen-test
 
 jobs:
-    check:
-        name: Build, lint and test
+  check:
+    name: Build, lint and test
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: lts/*
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
 
-            - name: Build, lint and package if needed
-              run: |
-                  if test -e Makefile; then
-                    make build lint release-file
-                  else
-                    echo "Not building. It's supposed to be a release tag/branch then."
-                  fi
+      - name: Build, lint and package if needed
+        run: |
+          if test -e Makefile; then
+            make build lint release-file
+          else
+            echo "Not building. It's supposed to be a release tag/branch then."
+          fi
 
-            - name: Generate token using app_id, pk and repo-name (1)
-              id: test_case_1_gen
-              uses: ./
-              with:
-                  app_id: ${{ secrets.TEST_APP_ID }}
-                  private_key: ${{ secrets.TEST_APP_PK }}
-                  repository: ${{ env.TEST_REPO }}
+      - name: Generate token using app_id, pk and repo-name (1)
+        id: test_case_1_gen
+        uses: ./
+        with:
+          app_id: ${{ secrets.TEST_APP_ID }}
+          private_key: ${{ secrets.TEST_APP_PK }}
+          repository: ${{ env.TEST_REPO }}
 
-            - name: Test access using token from (1)
-              env:
-                  GH_TOKEN: ${{ steps.test_case_1_gen.outputs.token }}
-              run: gh repo view "$TEST_REPO" --json name
+      - name: Test access using token from (1)
+        env:
+          GH_TOKEN: ${{ steps.test_case_1_gen.outputs.token }}
+        run: gh repo view "$TEST_REPO" --json name
 
-            - name: Generate token using app id, pk and installation id (2)
-              id: test_case_2_gen
-              uses: ./
-              with:
-                  app_id: ${{ secrets.TEST_APP_ID }}
-                  private_key: ${{ secrets.TEST_APP_PK }}
-                  installation_id: ${{ secrets.TEST_APP_INST_ID }}
+      - name: Generate token using app id, pk and installation id (2)
+        id: test_case_2_gen
+        uses: ./
+        with:
+          app_id: ${{ secrets.TEST_APP_ID }}
+          private_key: ${{ secrets.TEST_APP_PK }}
+          installation_id: ${{ secrets.TEST_APP_INST_ID }}
 
-            - name: Test access using token from (2)
-              env:
-                  GH_TOKEN: ${{ steps.test_case_2_gen.outputs.token }}
-              run: gh repo view "$TEST_REPO" --json name
+      - name: Test access using token from (2)
+        env:
+          GH_TOKEN: ${{ steps.test_case_2_gen.outputs.token }}
+        run: gh repo view "$TEST_REPO" --json name
