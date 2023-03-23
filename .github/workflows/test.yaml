@@ -12,8 +12,7 @@ jobs:
     check:
         name: Build, lint and test
 
-        runs-on: [self-hosted, linux]
-        # TODO: runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -23,11 +22,13 @@ jobs:
               with:
                   node-version: lts/*
 
-            - name: Prepare and build
-              run: make build
-
-            - name: Lint
-              run: make lint
+            - name: Build, lint and package if needed
+              run: |
+                  if test -e Makefile; then
+                    make build lint release-file
+                  else
+                    echo "Not building. It's supposed to be a release tag/branch then."
+                  fi
 
             - name: Generate token using app_id, pk and repo-name (1)
               id: test_case_1_gen
