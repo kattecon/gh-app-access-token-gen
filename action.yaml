@@ -2,13 +2,17 @@ name: Generate Access Token
 author: Evgeny Chukreev <Evgeny.Chukreev@gmail.com>
 description: Generates a GitHub Access Token for a Github App based upon specific inputs.
 
+branding:
+    icon: lock
+    color: green
+
 inputs:
     app_id:
         description: Github App Id.
         required: true
 
     private_key:
-        description: The private key of the GitHub App in PEM format.
+        description: "The private key of the GitHub App in PEM format (including -----BEGIN RSA PRIVATE KEY----- and -----END RSA PRIVATE KEY----- markers)."
         required: true
 
     installation_id:
