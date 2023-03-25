@@ -22,7 +22,7 @@ lint:
 	@npm run lint
 
 ${RELEASE_FILE}: dist/index.js ${RELEASE_STATIC_CONTENT} 
-	@tar -cf release.tar dist ${RELEASE_STATIC_CONTENT} && gzip release.tar
+	@tar -cf release.tar dist ${RELEASE_STATIC_CONTENT} && rm -f release.tar.gz && gzip release.tar
 
 temp/temp-created:
 	@mkdir -p temp && touch temp/temp-created
