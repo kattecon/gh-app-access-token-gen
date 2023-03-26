@@ -1,6 +1,6 @@
 APP_DEPS_FILES := package-lock.json Makefile $(shell find src -type f -regex '.*\.ts$$')
 RELEASE_FILE := release.tar.gz
-RELEASE_STATIC_CONTENT := .github/workflows/build.yaml action.yaml LICENSE README.md
+RELEASE_STATIC_CONTENT := .github/workflows/build.yaml .github/CODEOWNERS action.yaml LICENSE README.md
 
 .PHONY: clean distclean build
 
