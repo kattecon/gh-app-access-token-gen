@@ -26,9 +26,7 @@ async function main(): Promise<void> {
             // parse installationIdInput as number and validate.
             const installationId = Number(installationIdInput);
             if (`${installationId}` !== installationIdInput) {
-                throw new Error(
-                    `Invalid installation id: ${installationIdInput}`,
-                );
+                throw new Error(`Invalid installation id: ${installationIdInput}`);
             }
             return installationId;
         } else {
@@ -66,9 +64,7 @@ async function main(): Promise<void> {
     // Mask newly generated token in outputs, set the result and write a msg to console.
     core.setSecret(accessToken);
     core.setOutput("token", accessToken);
-    core.info(
-        "Successfully generated an app installation access token (as 'token' output).",
-    );
+    core.info("Successfully generated an app installation access token (as 'token' output).");
 }
 
 // Run the main function and catch any errors.

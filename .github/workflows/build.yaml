@@ -1,9 +1,14 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: Test
+name: Build
 on:
-  workflow_dispatch:
   push:
+  workflow_dispatch:
+    inputs:
+      upload_release_file:
+        type: boolean
+        default: false
+        description: Upload generated release file as an artifact.
 
 env:
   TEST_REPO: kattecon/gh-app-access-token-gen-test
@@ -55,3 +60,10 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.test_case_2_gen.outputs.token }}
         run: gh repo view "$TEST_REPO" --json name
+
+      - name: Upload release artifact
+        if: "${{ github.event.inputs.upload_release_file == 'true' }}"
+        uses: actions/upload-artifact@v3
+        with:
+          name: release
+          path: release.tar.gz
