@@ -15,5 +15,5 @@
     "typescript.tsdk": "./node_modules/typescript/lib",
     "typescript.preferences.importModuleSpecifier": "non-relative",
 
-    "cSpell.words": ["Chukreev", "Evgeny", "outfile"]
+    "cSpell.words": ["backreference", "Chukreev", "Evgeny", "outfile"]
 }
