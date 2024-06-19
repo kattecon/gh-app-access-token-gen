@@ -9,6 +9,11 @@ on:
         type: boolean
         default: false
         description: Upload generated release file as an artifact.
+      release_version:
+        type: string
+        default: ""
+        required: true
+        description: Use this string as version in the application.
 
 env:
   TEST_REPO: kattecon/gh-app-access-token-gen-test
