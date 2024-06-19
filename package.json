@@ -22,7 +22,7 @@
     },
     "scripts": {
         "prepare": "husky",
-        "build": "npm run build-common -- --outfile=dist/index.js",
+        "build": "npm run build-common -- --outfile=dist/index.mjs",
         "build-watch": "npm run build-common -- --watch --outfile=temp/build.js",
         "build-common": "esbuild src/index.ts --banner:js='import { createRequire } from \"node:module\";const require = createRequire(import.meta.url);' --platform=node --format=esm --target=es2023 --bundle",
         "lint": "tsc && eslint src --ext .ts --ext .js && prettier --check 'src/**/*.ts'"
