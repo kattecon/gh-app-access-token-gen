@@ -9,19 +9,19 @@ RELEASE_STATIC_CONTENT := .github/workflows/build.yaml .github/CODEOWNERS action
 
 all: build
 
-build: dist/index.js
+build: dist/index.mjs
 
 release-file: ${RELEASE_FILE}
 
-dist/index.js: ${APP_DEPS_FILES} temp/prepare-done package.json
+dist/index.mjs: ${APP_DEPS_FILES} temp/prepare-done package.json
 	@npm run build \
-		&& tr -d '\r' < dist/index.js > dist/index-unix.js \
-		&& mv dist/index-unix.js dist/index.js
+		&& tr -d '\r' < dist/index.mjs > dist/index-unix.mjs \
+		&& mv dist/index-unix.mjs dist/index.mjs
 
 lint:
 	@npm run lint
 
-${RELEASE_FILE}: dist/index.js ${RELEASE_STATIC_CONTENT} 
+${RELEASE_FILE}: dist/index.mjs ${RELEASE_STATIC_CONTENT} 
 	@tar -cf release.tar dist ${RELEASE_STATIC_CONTENT} && rm -f release.tar.gz && gzip release.tar
 
 temp/temp-created:
