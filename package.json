@@ -4,23 +4,28 @@
     "dependencies": {
         "@actions/core": "1.10.1",
         "@actions/github": "6.0.0",
-        "@octokit/auth-app": "6.1.1"
+        "@octokit/auth-app": "7.1.0"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "7.11.0",
         "@typescript-eslint/parser": "7.11.0",
-        "@vercel/ncc": "0.38.1",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-import-resolver-typescript": "3.6.1",
+        "eslint-plugin-import": "2.29.1",
+        "@types/node": "20.13.0",
         "eslint": "8.57.0",
+        "esbuild": "0.21.5",
         "husky": "9.0.11",
         "prettier": "3.2.5",
         "lint-staged": "15.2.7",
         "typescript": "5.4.5"
     },
     "scripts": {
-        "prepare": "husky install",
-        "pretty-quick": "pretty-quick --staged",
-        "build": "ncc build src/index.ts --target es2022",
-        "lint": "eslint src --ext .ts --ext .js && prettier --check 'src/**/*.ts'"
+        "prepare": "husky",
+        "build": "npm run build-common -- --outfile=dist/index.js",
+        "build-watch": "npm run build-common -- --watch --outfile=temp/build.js",
+        "build-common": "esbuild src/index.ts --banner:js='import { createRequire } from \"node:module\";const require = createRequire(import.meta.url);' --platform=node --format=esm --target=es2023 --bundle",
+        "lint": "tsc && eslint src --ext .ts --ext .js && prettier --check 'src/**/*.ts'"
     },
     "lint-staged": {
         "*": "prettier --write"

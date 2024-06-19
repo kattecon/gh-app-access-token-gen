@@ -17,7 +17,8 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "types": ["node"]
+        "types": ["node"],
+        "lib": ["es2023"]
     },
     "include": ["src"]
 }

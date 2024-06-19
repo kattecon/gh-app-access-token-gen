@@ -1,17 +1,17 @@
-import * as core from "@actions/core";
+import { getInput, info, setFailed, setOutput, setSecret } from "@actions/core";
 import { getOctokit } from "@actions/github";
 import { createAppAuth } from "@octokit/auth-app";
 
-function asErrorMsg(error: unknown): string {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+const asErrorMsg = (error: unknown): string => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-member-access
     return `${(error as any)?.message ?? error}`;
-}
+};
 
-async function main(): Promise<void> {
-    const appId = core.getInput("app_id", { required: true });
-    const privateKey = core.getInput("private_key", { required: true });
-    const repository = core.getInput("repository", { required: true });
-    const installationIdInput = core.getInput("installation_id");
+const main = async (): Promise<void> => {
+    const appId = getInput("app_id", { required: true });
+    const privateKey = getInput("private_key", { required: true });
+    const repository = getInput("repository", { required: true });
+    const installationIdInput = getInput("installation_id");
 
     // Request a temporary token for the application itself (by using the given app id and the private key).
     const appAuth = createAppAuth({ appId, privateKey });
@@ -23,18 +23,18 @@ async function main(): Promise<void> {
     // Get installation id either from input or deduce it from the repository name..
     const installationId = await (async (): Promise<number> => {
         if (installationIdInput) {
-            // parse installationIdInput as number and validate.
-            const installationId = Number(installationIdInput);
-            if (`${installationId}` !== installationIdInput) {
+            // Parse installationIdInput as number and validate.
+            const result = Number(installationIdInput);
+            if (`${result}` !== installationIdInput) {
                 throw new Error(`Invalid installation id: ${installationIdInput}`);
             }
-            return installationId;
+            return result;
         } else {
             // Get installation id using the repository name if the installation id is not provided.
 
             const [owner, repo] = repository.split("/");
 
-            core.info(
+            info(
                 `Installation id is not provided as input for the action. Getting installation for the app for the owner='${owner}', repository='${repo}'.`,
             );
 
@@ -62,14 +62,14 @@ async function main(): Promise<void> {
     ).data.token;
 
     // Mask newly generated token in outputs, set the result and write a msg to console.
-    core.setSecret(accessToken);
-    core.setOutput("token", accessToken);
-    core.info("Successfully generated an app installation access token (as 'token' output).");
-}
+    setSecret(accessToken);
+    setOutput("token", accessToken);
+    info("Successfully generated an app installation access token (as 'token' output).");
+};
 
 // Run the main function and catch any errors.
 try {
     await main();
 } catch (error) {
-    core.setFailed(asErrorMsg(error));
+    setFailed(asErrorMsg(error));
 }
