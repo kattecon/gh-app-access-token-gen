@@ -1,0 +1,15 @@
+{
+    // See https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc
+
+    // Inline HTML.
+    "MD033": {
+        // Allowed elements
+        "allowed_elements": ["p", "img"],
+    },
+
+    // Allow heading as we wish.
+    "MD041": false,
+
+    // Prettier aligns list... https://github.com/prettier/prettier/issues/4114
+    "MD030": false,
+}

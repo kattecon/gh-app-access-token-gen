@@ -27,5 +27,5 @@ outputs:
     description: The generated temporary access token for the installation of the app.
 
 runs:
-  using: node16
+  using: node20
   main: dist/index.js

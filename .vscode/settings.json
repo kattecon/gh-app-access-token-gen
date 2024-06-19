@@ -10,5 +10,10 @@
     "[json]": {
         "editor.indentSize": 4
     },
-    "cSpell.words": ["Chukreev", "Evgeny"]
+    "explorer.excludeGitIgnore": false,
+
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+
+    "cSpell.words": ["Chukreev", "Evgeny", "outfile"]
 }
