@@ -4,7 +4,7 @@
     "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/github": "6.0.1",
-        "@octokit/auth-app": "7.2.1"
+        "@octokit/auth-app": "8.0.1"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "7.18.0",
