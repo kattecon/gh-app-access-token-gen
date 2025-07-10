@@ -2,7 +2,7 @@ APP_DEPS_FILES := package-lock.json Makefile $(shell find src -type f -regex '.*
 RELEASE_FILE := release.tar.gz
 RELEASE_STATIC_CONTENT := .github/workflows/build.yaml .github/CODEOWNERS action.yaml LICENSE README.md
 
-.PHONY: clean distclean build
+.PHONY: clean distclean build prepare
 
 # Disable implicit rules
 .SUFFIXES:
@@ -11,6 +11,8 @@ all: build
 
 build: dist/index.mjs
 
+prepare: temp/prepare-done
+
 release-file: ${RELEASE_FILE}
 
 dist/index.mjs: ${APP_DEPS_FILES} temp/prepare-done package.json
@@ -18,7 +20,7 @@ dist/index.mjs: ${APP_DEPS_FILES} temp/prepare-done package.json
 		&& tr -d '\r' < dist/index.mjs > dist/index-unix.mjs \
 		&& mv dist/index-unix.mjs dist/index.mjs
 
-lint:
+lint: temp/prepare-done
 	@npm run lint
 
 ${RELEASE_FILE}: dist/index.mjs ${RELEASE_STATIC_CONTENT} 
@@ -27,7 +29,7 @@ ${RELEASE_FILE}: dist/index.mjs ${RELEASE_STATIC_CONTENT}
 temp/temp-created:
 	@mkdir -p temp && touch temp/temp-created
 
-temp/prepare-done: temp/temp-created Makefile package-lock.json
+temp/prepare-done: temp/temp-created Makefile package-lock.json package.json
 	@npm ci && touch temp/prepare-done
 
 clean:
