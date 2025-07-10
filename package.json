@@ -7,25 +7,26 @@
         "@octokit/auth-app": "8.0.1"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "7.18.0",
-        "@typescript-eslint/parser": "7.18.0",
+        "@typescript-eslint/eslint-plugin": "8.35.0",
+        "@typescript-eslint/parser": "8.35.0",
         "eslint-config-prettier": "10.1.5",
-        "eslint-import-resolver-typescript": "4.3.5",
+        "eslint-import-resolver-typescript": "4.4.4",
         "eslint-plugin-import": "2.31.0",
         "@types/node": "24.0.10",
-        "eslint": "8.57.1",
+        "eslint": "9.30.1",
         "esbuild": "0.25.5",
         "husky": "9.1.7",
         "prettier": "3.5.3",
         "lint-staged": "16.1.2",
-        "typescript": "5.8.3"
+        "typescript": "5.8.3",
+        "typescript-eslint": "8.35.0"
     },
     "scripts": {
         "prepare": "husky",
         "build": "npm run build-common -- --outfile=dist/index.mjs",
         "build-watch": "npm run build-common -- --watch --outfile=temp/build.js",
         "build-common": "esbuild src/index.ts --banner:js='import { createRequire } from \"node:module\";const require = createRequire(import.meta.url);' --platform=node --format=esm --target=es2023 --bundle",
-        "lint": "tsc && eslint src --ext .ts --ext .js && prettier --check 'src/**/*.ts'"
+        "lint": "tsc && eslint src --max-warnings 0 --report-unused-disable-directives && prettier --check 'src/**/*.ts'"
     },
     "lint-staged": {
         "*": "prettier --write"
