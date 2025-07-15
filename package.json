@@ -4,7 +4,7 @@
     "dependencies": {
         "@actions/core": "1.11.1",
         "@actions/github": "6.0.1",
-        "@octokit/auth-app": "8.0.1"
+        "@octokit/auth-app": "8.0.2"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "8.35.1",
@@ -12,7 +12,7 @@
         "eslint-config-prettier": "10.1.5",
         "eslint-import-resolver-typescript": "4.4.4",
         "eslint-plugin-import": "2.32.0",
-        "@types/node": "24.0.12",
+        "@types/node": "24.0.13",
         "eslint": "9.30.1",
         "esbuild": "0.25.6",
         "husky": "9.1.7",
