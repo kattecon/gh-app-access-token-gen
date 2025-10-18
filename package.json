@@ -12,7 +12,7 @@
         "eslint-config-prettier": "10.1.8",
         "eslint-import-resolver-typescript": "4.4.4",
         "eslint-plugin-import": "2.32.0",
-        "@types/node": "24.5.2",
+        "@types/node": "24.6.2",
         "eslint": "9.36.0",
         "esbuild": "0.25.10",
         "husky": "9.1.7",
