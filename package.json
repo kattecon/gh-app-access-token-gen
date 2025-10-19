@@ -14,7 +14,7 @@
         "eslint-plugin-import": "2.32.0",
         "@types/node": "24.6.2",
         "eslint": "9.37.0",
-        "esbuild": "0.25.10",
+        "esbuild": "0.25.11",
         "husky": "9.1.7",
         "prettier": "3.6.2",
         "lint-staged": "16.2.4",
