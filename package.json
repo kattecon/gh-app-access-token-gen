@@ -19,7 +19,7 @@
         "prettier": "3.6.2",
         "lint-staged": "16.2.5",
         "typescript": "5.9.3",
-        "typescript-eslint": "8.46.0"
+        "typescript-eslint": "8.46.2"
     },
     "scripts": {
         "prepare": "husky",
