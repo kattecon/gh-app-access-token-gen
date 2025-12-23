@@ -1,0 +1,14 @@
+action.yaml: GitHub Action def; generates GitHub App installation tokens.
+.editorconfig: EditorConfig file; cross-editor formatting rules.
+eslint.config.mjs: ESLint config for TS; strict type-checked rules, import validation, Prettier compat.
+Makefile: Automates npm build/lint workflow; tracks src deps for incremental builds, creates release tarball; used by CI.
+.markdownlint.jsonc: markdownlint config; adjusts rules for Prettier compat, enables needed HTML.
+.npmrc: npm config; exact version saves (no semver ranges) for reproducible builds.
+package.json: NPM manifest; runtime/dev deps, npm scripts (build/lint/...).
+package-lock.json: npm dep lockfile; auto-gen exact versions w/ integrity hashes for reproducible installs.
+.prettierignore: Prettier ignore list; excludes non-code files from formatting.
+.prettierrc: Prettier config; code formatting style rules.
+renovate.json: Renovate Bot config; automates dependency updates via PRs.
+tsconfig.json: TS compiler config; strict type checks, by tsc/ESLint/IDEs.
+src/index.ts: GitHub Action entry point; generates app installation tokens via @octokit/auth-app.
+.vscode/tasks.json: VS Code tasks config; build/lint tasks.
