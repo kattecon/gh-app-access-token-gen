@@ -2,3 +2,4 @@
 .prettierignore
 .editorconfig
 Makefile
+*.txt
