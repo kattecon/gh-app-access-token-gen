@@ -3,7 +3,7 @@
     "type": "module",
     "dependencies": {
         "@actions/core": "2.0.2",
-        "@actions/github": "6.0.1",
+        "@actions/github": "7.0.0",
         "@octokit/auth-app": "8.1.2"
     },
     "devDependencies": {
