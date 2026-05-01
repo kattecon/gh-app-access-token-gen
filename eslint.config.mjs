@@ -1,8 +1,8 @@
-// ESLint v9 flat config with modern ES6 imports and defineConfig helper
+// ESLint v10 flat config with modern ES6 imports and defineConfig helper
 import { globalIgnores } from "eslint/config";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import importPlugin from "eslint-plugin-import";
+import { importX } from "eslint-plugin-import-x";
 import prettierConfig from "eslint-config-prettier";
 
 export default tseslint.config(
@@ -26,9 +26,9 @@ export default tseslint.config(
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,
             ...tseslint.configs.stylisticTypeChecked,
-            importPlugin.flatConfigs.errors,
-            importPlugin.flatConfigs.warnings,
-            importPlugin.flatConfigs.typescript,
+            importX.flatConfigs.errors,
+            importX.flatConfigs.warnings,
+            importX.flatConfigs.typescript,
         ],
         /*plugins: {
             // We explicitly declare the import plugin here
@@ -43,11 +43,11 @@ export default tseslint.config(
         },
         settings: {
             // https://github.com/import-js/eslint-import-resolver-typescript#configuration
-            "import/parsers": {
+            "import-x/parsers": {
                 "@typescript-eslint/parser": [".ts"],
             },
             // https://github.com/import-js/eslint-plugin-import?tab=readme-ov-file#importresolver
-            "import/resolver": {
+            "import-x/resolver": {
                 typescript: {
                     alwaysTryTypes: true,
                     project: "./tsconfig.json",
@@ -238,13 +238,13 @@ export default tseslint.config(
             ],
 
             // Import plugin rules
-            "import/no-unresolved": [
+            "import-x/no-unresolved": [
                 "error",
                 {
                     /*"ignore": ["^virtual:icons/*"]*/
                 },
             ],
-            "import/order": [
+            "import-x/order": [
                 "error",
                 {
                     "newlines-between": "always-and-inside-groups",
@@ -255,25 +255,28 @@ export default tseslint.config(
                     },
                 },
             ],
-            "import/no-default-export": "error",
-            "import/no-duplicates": "error",
-            "import/named": "off",
-            "import/no-named-default": "error",
-            "import/no-namespace": "error",
-            "import/no-anonymous-default-export": "error",
-            "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
-            "import/no-cycle": "error",
-            "import/no-dynamic-require": "error",
-            "import/no-absolute-path": "error",
-            "import/no-useless-path-segments": "error",
-            "import/no-self-import": "error",
-            "import/no-relative-packages": "error",
-            "import/no-webpack-loader-syntax": "error",
-            "import/no-deprecated": "error",
-            "import/no-empty-named-blocks": "error",
-            "import/no-extraneous-dependencies": "error",
-            "import/no-unused-modules": "error",
-            "import/no-mutable-exports": "error",
+            "import-x/no-default-export": "error",
+            "import-x/no-duplicates": "error",
+            "import-x/named": "off",
+            "import-x/no-named-default": "error",
+            "import-x/no-namespace": "error",
+            "import-x/no-anonymous-default-export": "error",
+            "import-x/consistent-type-specifier-style": ["error", "prefer-top-level"],
+            "import-x/no-cycle": "error",
+            "import-x/no-dynamic-require": "error",
+            "import-x/no-absolute-path": "error",
+            "import-x/no-useless-path-segments": "error",
+            "import-x/no-self-import": "error",
+            "import-x/no-relative-packages": "error",
+            "import-x/no-webpack-loader-syntax": "error",
+            "import-x/no-deprecated": "error",
+            "import-x/no-empty-named-blocks": "error",
+            "import-x/no-extraneous-dependencies": "error",
+            "import-x/no-unused-modules": [
+                "error",
+                { unusedExports: true, suppressMissingFileEnumeratorAPIWarning: true },
+            ],
+            "import-x/no-mutable-exports": "error",
 
             // Custom restrictions from original config
             "no-restricted-syntax": [
@@ -308,7 +311,7 @@ export default tseslint.config(
             "@typescript-eslint/no-non-null-assertion": "off",
             "@typescript-eslint/no-empty-function": "off",
             "@typescript-eslint/consistent-type-assertions": "off",
-            "import/no-namespace": "off",
+            "import-x/no-namespace": "off",
             "no-restricted-syntax": "off",
             "prefer-arrow-callback": "off",
             "@typescript-eslint/naming-convention": "off",
