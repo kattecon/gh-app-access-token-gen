@@ -49,6 +49,7 @@ const main = async (): Promise<void> => {
                 const cause = asErrorMsg(error);
                 throw new Error(
                     `Unable to find an app installation for the owner='${owner}' and repository='${repo}': ${cause}`,
+                    { cause: error },
                 );
             }
         }

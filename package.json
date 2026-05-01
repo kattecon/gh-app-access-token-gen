@@ -7,13 +7,14 @@
         "@octokit/auth-app": "8.2.0"
     },
     "devDependencies": {
+        "@eslint/js": "10.0.1",
         "@typescript-eslint/eslint-plugin": "8.58.2",
         "@typescript-eslint/parser": "8.58.2",
         "eslint-config-prettier": "10.1.8",
         "eslint-import-resolver-typescript": "4.4.4",
-        "eslint-plugin-import": "2.32.0",
+        "eslint-plugin-import-x": "4.16.2",
         "@types/node": "25.6.0",
-        "eslint": "9.39.4",
+        "eslint": "10.2.0",
         "esbuild": "0.28.0",
         "husky": "9.1.7",
         "prettier": "3.8.3",
